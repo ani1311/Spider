@@ -60,15 +60,17 @@ func getLinksInPage(linkUrl string) []string {
 	domain := urlParse.Scheme + "://" + urlParse.Host
 
 	links := []string{}
-
+	// fmt.Println("Exploring: ", linkUrl)
 	for {
 		tt := z.Next()
 
 		switch {
 		case tt == html.ErrorToken:
 			// End of the document, we're done
+			// fmt.Println(links)
 			return links
 		case tt == html.StartTagToken:
+
 			t := z.Token()
 
 			isAnchor := t.Data == "a"
